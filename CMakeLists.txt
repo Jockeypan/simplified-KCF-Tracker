@@ -1,0 +1,20 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin) 
+SET(CMAKE_CXX_FLAGS "-fPIC -O3 -std=c++11 ${CMAKE_CXX_FLAGS}") # -O0 -g
+
+FIND_PACKAGE(OpenCV REQUIRED)
+INCLUDE_DIRECTORIES(./)
+INCLUDE_DIRECTORIES(${OpenCV_INCLUDE_DIRS})
+
+ADD_EXECUTABLE(utest
+    basetype.cpp
+    dxt.cpp
+    fhog.cpp
+    kcftracker.cpp
+    trackerinterface.h
+    test/runtracker.cpp
+    )
+
+TARGET_LINK_LIBRARIES(utest ${OpenCV_LIBS})
